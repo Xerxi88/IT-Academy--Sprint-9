@@ -1,24 +1,128 @@
+/* ---------------Colors-------------- */
+
+:root{
+    --main-bg--:#e6d596;
+    --scnd-bg--:#b45c64;
+    --cards----:#a7b9d3;
+}
+
+
+
+main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-image: url("./images/background.png");
+}
+
+
 .container{
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
+    width: 60%;
+    border-left: 2px solid black;
+    border-right: 2px solid black;
+    background-color: rgba(230, 213, 150, 0.7);
 }
 
 .container-card{
-    background-color: teal;
     display: flex;
     justify-content: center;
+    height: 100px;
+    width: 300px;
 }
 
 .card{
-    background-color: white;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 200px;
-    transition: .5s ease;
+    width: 250px;
+    margin: 20px;
+    border: 2px solid white;
+    border-radius: 25px;
+    transition: .8s ease;
+    cursor: pointer;
+}
+.pokemon-name{
+    flex: content;
+    padding-left: 15px;
+    color: rgb(81, 81, 81);
+    user-select: none;
+}
+
+span{
+    color: rgb(144, 144, 144);
+    padding-right: 5px;
+    font-size: 0.8em;
 }
 
 .card:hover{
-    background-color: aqua;
- 
+    background-color: var(--cards----);
+    border: 2px solid var(--scnd-bg--);
+}
+
+/* -------------Fitxa------------- */
+
+section{
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0,0,0,.4);
+}
+
+.pokecard{
+    width: 30%;
+    height: 70vh;
+    margin-top: 2.6rem;
+    border-radius: 10%;
+    background-color: goldenrod;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: -2;
+}
+
+.header-card{
+    position: absolute;
+    width: 30%;
+    height: 20vh;
+    z-index: -1;
+    background-color: white;
+    border-top-left-radius:20px;
+    border-top-right-radius:20px;
+    background-image: url("./images/header-card.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+
+}
+  
+.pokecard img{
+    width: 40%;
+    border: 15px solid goldenrod;
+    border-radius: 35%;
+    object-fit: cover;
+    padding: 20px;
+    margin-top: 20px;
+    background-color: white;
+}
+
+.poke-info{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+}
+.poke-info h2{
+    justify-content: flex-start;
+}
+.card-footer{
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    background-color: pink;
+    border-bottom-left-radius:20px;
+    border-bottom-right-radius:20px;
 }
