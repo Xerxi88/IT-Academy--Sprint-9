@@ -7,12 +7,32 @@
 }
 
 
+/* --------Header--------- */
+
+header{
+    display: flex;
+    flex-direction: row;
+    justify-content:center;
+    margin-top: 20px;
+}
+
+
+
 
 main{
     display: flex;
     flex-direction: column;
     align-items: center;
     background-image: url("./images/background.png");
+    min-height: 78.5vh;
+}
+
+/* -----------Nav----------- */
+
+nav{
+    display: flex;
+    justify-content: center;
+    text-align: center;
 }
 
 
@@ -20,17 +40,53 @@ main{
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    align-items: flex-start;
     width: 60%;
-    border-left: 2px solid black;
-    border-right: 2px solid black;
+    border-left: 10px solid var(--scnd-bg--);
+    border-right: 10px solid var(--scnd-bg--);
+    border-bottom: 10px solid var(--scnd-bg--);
+    border-bottom-left-radius:15px;
+    border-bottom-right-radius:15px;
     background-color: rgba(230, 213, 150, 0.7);
+}
+
+.search{
+    position: absolute;
+    display: flex;
+    align-items: center;
+    left: 10px;
+    margin-top: 20px;
+}
+
+svg{
+    background-color:  rgba(230, 213, 150);
+    height: 20px;
+    width: 20px;
+    border-radius: 30%;
+    margin-right: 10px;
+    padding: 10px;
+    color: white;
+}
+
+input{
+    padding: 7px 2px;
+    box-shadow: 0px 2px 2px rgba(0,0,0,.25);
+    border-radius: 5px;
+    border: none;
+    font-weight: bold;
+    outline: none;
+}
+
+input:focus{
+    background-color:  rgba(230, 213, 150);
+    color: white;
 }
 
 .container-card{
     display: flex;
     justify-content: center;
     height: 100px;
-    width: 300px;
+    width: 250px;
 }
 
 .card{
@@ -66,6 +122,7 @@ span{
 
 section{
     position: fixed;
+    top: 0;
     display: flex;
     justify-content: center;
     width: 100%;
@@ -75,14 +132,20 @@ section{
 
 .pokecard{
     width: 30%;
-    height: 70vh;
+    height: 75vh;
     margin-top: 2.6rem;
-    border-radius: 10%;
-    background-color: goldenrod;
+    border-radius: 20px;
+    background-color: whitesmoke;
     display: flex;
     flex-direction: column;
     align-items: center;
     z-index: -2;
+}
+
+h3{
+    display: flex;
+    flex-direction: column;
+    align-items:center ;
 }
 
 .header-card{
@@ -91,22 +154,55 @@ section{
     height: 20vh;
     z-index: -1;
     background-color: white;
-    border-top-left-radius:20px;
-    border-top-right-radius:20px;
     background-image: url("./images/header-card.png");
     background-size: contain;
     background-repeat: no-repeat;
+}
 
+.header-backcard{
+    position: absolute;
+    width: 30%;
+    height: 20vh;
+    z-index: -1;
+    opacity: .6;
 }
   
-.pokecard img{
-    width: 40%;
-    border: 15px solid goldenrod;
-    border-radius: 35%;
-    object-fit: cover;
+.pokecard .header-image {
+    width: 35%;
+    border: 15px solid whitesmoke;
+    border-radius: 30%;
     padding: 20px;
     margin-top: 20px;
     background-color: white;
+}
+
+h1{
+    width: 35%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    font-size: 1.6em;
+    color: rgba(0,0,0,.8);
+}
+
+h2{
+    width:100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.poke-type{
+    width: 30%;
+    text-align: center;
+    align-items: center;
+    color: whitesmoke;
+    background-color: darkblue;
+    border: 1px solid thistle;
+    padding: 2px;
+    border-radius: 2rem;
+
 }
 
 .poke-info{
@@ -114,15 +210,40 @@ section{
     flex-direction: column;
     width: 100%;
     align-items: center;
+    margin-bottom: 30px;
+    height: 30%;
 }
-.poke-info h2{
-    justify-content: flex-start;
-}
+
+
 .card-footer{
     width: 100%;
     display: flex;
     justify-content: space-evenly;
-    background-color: pink;
-    border-bottom-left-radius:20px;
-    border-bottom-right-radius:20px;
+    align-items: center;
+    flex-wrap: wrap;
+   
 }
+
+.card-footer-social{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.poke-stats{
+    display: flex;
+    width: 90%;
+    padding: 5px;
+    border-radius: 40%;
+    line-height: 20px;
+    color: rgba(0,0,0,.8);
+}
+
+.icons-power{
+    width: 55px;
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+    align-items: center;
+}
+
