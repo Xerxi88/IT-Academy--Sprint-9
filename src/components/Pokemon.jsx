@@ -14,9 +14,6 @@ const Pokemon = ({pokemon, index, setShowPokemon, setIndice ,setSelectedPokemon}
       setSprite(response.data.sprites.front_default);
     })
   },[])
-
-    //Para la fichas: response.data.sprites.other["official-artwork"].front_default 
-    //Para las cartas: response.data.sprites.front_default
   
     const openCard = (index)=>{
       setShowPokemon(true);
@@ -25,7 +22,7 @@ const Pokemon = ({pokemon, index, setShowPokemon, setIndice ,setSelectedPokemon}
 
   return (
     <>
-      <div className='container-card' onClick={()=>{openCard(index);
+      <div className='container-card' onClick={()=>{openCard(info.id-1);
                                                     setSelectedPokemon(index)}}>
         <div className='card'>
           <h3 className='pokemon-name'><span>#{info.id}</span>{pokemon[index].name.substring(0,1).toUpperCase()+pokemon[index].name.substring(1).toLowerCase()}</h3>

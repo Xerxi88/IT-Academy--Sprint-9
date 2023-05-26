@@ -1,20 +1,20 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import attack from "../images/attack.png"
 import defense from "../images/defense.png"
 import special from "../images/special.png"
+import { FavoritesContext } from "../Context";
 
 const FitxaPokemon = ({ pokemon, setShowPokemon, index }) => {
   const [imgPokemon, setImgPokemon] = useState("");
-  const [imgShiny, setImgShiny] = useState("");
   const [cardPokemon, setCardPokemon] = useState("");
+  const {favorites,setFavorites}=useContext(FavoritesContext);
 
   useEffect(() => {
     axios.get(pokemon[index].url).then((response) => {
       setImgPokemon(
         response.data.sprites.other["official-artwork"].front_default
       );
-      setImgShiny(response.data.sprites.front_shiny);
       setCardPokemon(response.data);
     });
   }, []);
@@ -22,6 +22,11 @@ const FitxaPokemon = ({ pokemon, setShowPokemon, index }) => {
   const closeCard = () => {
     setShowPokemon(false);
   };
+
+  const favorito = () => {
+    setFavorites(favorites.indexOf(cardPokemon.id)>-1 ? favorites.filter((poke)=> poke !== cardPokemon.id):[...favorites,cardPokemon.id]);
+  }
+
 
   const colorMap = {
     fighting: "#ce3f6b",
@@ -48,10 +53,13 @@ const FitxaPokemon = ({ pokemon, setShowPokemon, index }) => {
   return (
     <>
       {cardPokemon && (
-        <section className="fitxa-container" onClick={closeCard}>
+        <section className="fitxa-container"  onClick={closeCard}>
           <article className="pokecard">
+            <div className="heart">
+            <div className="favorite" onClick={(e)=>{e.stopPropagation();favorito();}}>{favorites.includes(cardPokemon.id)?"❤️":"🖤"}</div>
+            </div>
             <div className="header-card" ></div>
-            <div className="header-backcard" style={{backgroundColor:backgroundHeaderColor}}>
+            <div className="header-backcard" style={{backgroundColor:backgroundHeaderColor,borderTopLeftRadius:"20px",borderTopRightRadius:"20px"}}>
             </div>
             <img
               className="header-image"
@@ -60,6 +68,7 @@ const FitxaPokemon = ({ pokemon, setShowPokemon, index }) => {
               width={"100px"}
               style={{backgroundColor: backgroundHeaderColor}}
             />
+            
             <div className="poke-info">
               <h1>
                 <span>#{cardPokemon.id}</span>

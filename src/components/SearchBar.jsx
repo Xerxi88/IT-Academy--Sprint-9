@@ -1,11 +1,11 @@
-import React, { useState } from 'react'
+import React from 'react'
 
 const SearchBar = ({setSearch}) => {
 
   return (
     
     <>
-    <input type="text" onChange={(e)=>{setSearch(e.target.value)}} />
+    <input type="text" placeholder='Buscar Pokemon...' onChange={(e)=>{setSearch(e.target.value)}} />
     </>
   )
 }
