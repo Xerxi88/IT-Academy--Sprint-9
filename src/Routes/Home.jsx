@@ -1,9 +1,9 @@
 import React, {useState,useEffect} from 'react'
 import pikachu from "../images/home-pikachu.png"
+import eevee from "../images/home-eevee.png"
 
-const Home = () => {
 
-  const [registered, setRegistered] = useState(false);
+const Home = ({setShowLogin, registered, setRegistered}) => {
 
   useEffect(() => {
     const user = localStorage.getItem('User');
@@ -13,22 +13,29 @@ const Home = () => {
   }, []);
 
   const handleRegistration = () => {
-    if (registered) {
-      // Acción para usuarios registrados
+
+      if (registered) {
+        localStorage.removeItem('User');
+        localStorage.removeItem('Password');
+        window.location.reload();
     } else {
-      // Acción para usuarios no registrados
-    }
+      setShowLogin(true);
+    } 
   };
+
 
   return (
     
     <main className='home-container'>
       <div className="info">
         Bienvenido a la web de Pokemon donde podrás buscar todos los pokemons y ver su ficha de información y estadisticas. Si no puedes esperar mas registrate y entra. Podrás tambien seleccionar tus pokemons favoritos y verlos en cualquier momento.
-        <button onClick={handleRegistration}>{registered ? 'Ya estoy registrado' : 'Registrarse'}</button>
+        <button onClick={handleRegistration}>{registered ? 'Logout' : 'Registrarse'}</button>
       </div>
       <div className="pika-container">
       <img  className="pikachu" src={pikachu} alt="pikachu" style={{width:"60%"}}/>
+      </div>
+      <div className="eevee-container">
+      <img  className="eevee" src={eevee} alt="eevee" style={{width:"35%"}}/>
       </div>
     </main>
   )

@@ -6,6 +6,7 @@ import SearchBar from "../components/SearchBar";
 import ReactHowler from "react-howler";
 import check from "../audio/check.mp3";
 
+
 function Pokedex() {
   const [pokemon, setPokemon] = useState(null);
   const [pokemonAll, setPokemonAll] = useState(null);
@@ -14,7 +15,6 @@ function Pokedex() {
   const [selectedPokemon, setSelectedPokemon] = useState(null);
   const [search, setSearch] = useState("");
   let   [generacion,setGeneracion]=useState(1);
-  console.log(generacion);
  
    const generations = {
     1:[0,151],
@@ -28,12 +28,12 @@ function Pokedex() {
     9:[905,103],
   }
 
-  const prueba = generations[generacion];
-  console.log(prueba);
+  const generaciones = generations[generacion];
+
 
   useEffect(() => {
     axios
-      .get(`https://pokeapi.co/api/v2/pokemon/?offset=${prueba[0]}&limit=${prueba[1]}`)
+      .get(`https://pokeapi.co/api/v2/pokemon/?offset=${generaciones[0]}&limit=${generaciones[1]}`)
       .then((response) => setPokemon(response.data.results));
   }, [generacion]);
 
@@ -42,6 +42,8 @@ function Pokedex() {
       .get("https://pokeapi.co/api/v2/pokemon/?offset=0&limit=1010")
       .then((response) => setPokemonAll(response.data.results));
   }, []);
+
+ 
 
   return (
     <>
@@ -60,7 +62,7 @@ function Pokedex() {
           <SearchBar setSearch={setSearch} />
         </div>
         <div className="main-container">
-        <button style={{ visibility: generacion < 2 ? "hidden" : "visible" }} onClick={()=>setGeneracion(--generacion)}>Generación anterior</button>
+        <button className="generationsButton" style={{ visibility: generacion < 2 ? "hidden" : "visible" }} onClick={()=>setGeneracion(--generacion)}>Generación anterior</button>
         <div className="container">
           {search && pokemonAll
             ? pokemonAll
@@ -118,7 +120,7 @@ function Pokedex() {
             ""
           )}
         </div>
-        <button style={{ visibility: generacion > 8 ? "hidden" : "visible" }} onClick={()=>setGeneracion(++generacion)}>Siguiente generación</button>
+        <button className="generationsButton" style={{ visibility: generacion > 8 ? "hidden" : "visible" }} onClick={()=>setGeneracion(++generacion)}>Siguiente generación</button>
         </div>
       </main>
     </>

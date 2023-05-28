@@ -4,11 +4,14 @@ import attack from "../images/attack.png"
 import defense from "../images/defense.png"
 import special from "../images/special.png"
 import { FavoritesContext } from "../Context";
+import favorite from "../audio/favorite.mp3"
+import ReactHowler from "react-howler";
 
 const FitxaPokemon = ({ pokemon, setShowPokemon, index }) => {
   const [imgPokemon, setImgPokemon] = useState("");
   const [cardPokemon, setCardPokemon] = useState("");
   const {favorites,setFavorites}=useContext(FavoritesContext);
+  const [isSoundActive, setIsSoundActive] = useState(false);
 
   useEffect(() => {
     axios.get(pokemon[index].url).then((response) => {
@@ -19,14 +22,24 @@ const FitxaPokemon = ({ pokemon, setShowPokemon, index }) => {
     });
   }, []);
 
+  useEffect(()=>{
+    if(favorites.length >0){
+      localStorage.setItem('favs', JSON.stringify(favorites));
+    }
+  },[favorites])
+
+
   const closeCard = () => {
     setShowPokemon(false);
   };
 
   const favorito = () => {
-    setFavorites(favorites.indexOf(cardPokemon.id)>-1 ? favorites.filter((poke)=> poke !== cardPokemon.id):[...favorites,cardPokemon.id]);
+    setFavorites(favorites.includes(cardPokemon.id) ? favorites.filter((poke)=> poke !== cardPokemon.id):[...favorites,cardPokemon.id]);
   }
 
+  const toggleSound = () => {
+    setIsSoundActive(!isSoundActive);
+  };
 
   const colorMap = {
     fighting: "#ce3f6b",
@@ -56,7 +69,7 @@ const FitxaPokemon = ({ pokemon, setShowPokemon, index }) => {
         <section className="fitxa-container"  onClick={closeCard}>
           <article className="pokecard">
             <div className="heart">
-            <div className="favorite" onClick={(e)=>{e.stopPropagation();favorito();}}>{favorites.includes(cardPokemon.id)?"❤️":"🖤"}</div>
+            <div className="favorite" onClick={(e)=>{e.stopPropagation();favorito();toggleSound();}}>{favorites.includes(cardPokemon.id)?"❤️":"🖤"}</div>
             </div>
             <div className="header-card" ></div>
             <div className="header-backcard" style={{backgroundColor:backgroundHeaderColor,borderTopLeftRadius:"20px",borderTopRightRadius:"20px"}}>
@@ -119,6 +132,9 @@ const FitxaPokemon = ({ pokemon, setShowPokemon, index }) => {
           </article>
         </section>
       )}
+      {
+        <ReactHowler src={favorite} playing={isSoundActive} />
+      }
     </>
   );
 };
