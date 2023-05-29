@@ -1,6 +1,6 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import { Navigate } from 'react-router-dom';
-import {FavoritesContext} from "../Context"
+
 
 const PrivateRoute = ({children, registered}) => {
   return (registered)

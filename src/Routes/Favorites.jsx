@@ -44,9 +44,9 @@ const Favorites = () => {
     <>
     <main>
     <div className="container">
-    {
-      pokemonData.map((poke)=>
-      <div className='container-card' >
+    { 
+      pokemonData.map((poke)=> 
+      <div className='container-card' key={poke.id}>
           <div className='card' onClick={()=>showPokemon(poke.id)} >
             <h3 className='pokemon-name'><span>#{poke.id}</span>{poke.name.substring(0,1).toUpperCase()+poke.name.substring(1).toLowerCase()}</h3>
             <img src={poke.sprites.front_default} alt={poke.id} width={"100px"} className='pokemon-image'/>

@@ -1,9 +1,9 @@
-import React, {useState,useEffect} from 'react'
+import React, {useEffect} from 'react'
 import pikachu from "../images/home-pikachu.png"
 import eevee from "../images/home-eevee.png"
 
 
-const Home = ({setShowLogin, registered, setRegistered}) => {
+const Home = ({setShowLogin ,setRegistered ,registered}) => {
 
   useEffect(() => {
     const user = localStorage.getItem('User');

@@ -88,7 +88,7 @@ const FitxaPokemon = ({ pokemon, setShowPokemon, index }) => {
                 {cardPokemon.name.substring(0, 1).toUpperCase() +
                   cardPokemon.name.substring(1).toLowerCase()}
               </h1>
-              <h2>
+              <h2 className="types">
                 {cardPokemon.types.map((poke) => {
                   const backgroundColor = colorMap[poke.type.name] || "#9099a2";
                   return (

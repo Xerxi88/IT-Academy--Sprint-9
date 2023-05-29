@@ -4,10 +4,11 @@ import logo from "../images/header.png"
 import pikachu from "../images/pikachu-login.png"
 import eevee from "../images/eevee-login.png"
 
-const Login = ({setShowLogin, setRegistered}) => {
+const Login = ({setShowLogin,setRegistered}) => {
 
 const usernameRef = useRef(null);
 const passwordRef = useRef(null);
+
 
 const closeLogin=()=>{
     setShowLogin((e)=>setShowLogin(false));
@@ -28,8 +29,8 @@ const registrar=()=>{
        <div className="register">
           <img src={logo} alt="PokeApi" style={{width:"50%"}}/>
           <img src={close} alt="close-window" className='close-window' onClick={closeLogin}/>
-          <input ref={usernameRef} style={{width:"200px"}} type="text" required placeholder='Usuario'/>
-          <input ref={passwordRef} style={{width:"200px"}} type="password" required placeholder='Contraseña' />
+          <input className="inputRegister" ref={usernameRef} type="text" required placeholder='Usuario'/>
+          <input className="inputRegister" ref={passwordRef} type="password" required placeholder='Contraseña' />
           <button className='btn-register' onClick={registrar}>Registrar</button>
           <img src={pikachu} alt="pikachu" className='pikachu-login'/>
           <img src={eevee} alt="eevee" className='eevee-login'/>
